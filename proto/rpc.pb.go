@@ -117,6 +117,66 @@ func (x *Reply) GetStatus() bool {
 	return false
 }
 
+type StatusResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Status        string                 `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	Uptime        int64                  `protobuf:"varint,2,opt,name=uptime,proto3" json:"uptime,omitempty"`
+	Version       string                 `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StatusResponse) Reset() {
+	*x = StatusResponse{}
+	mi := &file_proto_rpc_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StatusResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StatusResponse) ProtoMessage() {}
+
+func (x *StatusResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StatusResponse.ProtoReflect.Descriptor instead.
+func (*StatusResponse) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *StatusResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *StatusResponse) GetUptime() int64 {
+	if x != nil {
+		return x.Uptime
+	}
+	return 0
+}
+
+func (x *StatusResponse) GetVersion() string {
+	if x != nil {
+		return x.Version
+	}
+	return ""
+}
+
 var File_proto_rpc_proto protoreflect.FileDescriptor
 
 const file_proto_rpc_proto_rawDesc = "" +
@@ -126,7 +186,11 @@ const file_proto_rpc_proto_rawDesc = "" +
 	"\x06nodeID\x18\x01 \x01(\x03R\x06nodeID\x12!\n" +
 	"\flogical_time\x18\x02 \x01(\x03R\vlogicalTime\"\x1f\n" +
 	"\x05Reply\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\bR\x06status2@\n" +
+	"\x06status\x18\x01 \x01(\bR\x06status\"Z\n" +
+	"\x0eStatusResponse\x12\x16\n" +
+	"\x06status\x18\x01 \x01(\tR\x06status\x12\x16\n" +
+	"\x06uptime\x18\x02 \x01(\x03R\x06uptime\x12\x18\n" +
+	"\aversion\x18\x03 \x01(\tR\aversion2@\n" +
 	"\rRicartService\x12/\n" +
 	"\rRequestAccess\x12\x0f.ricart.Request\x1a\r.ricart.ReplyB\x1dZ\x1btacoterror/generated/ricartb\x06proto3"
 
@@ -142,10 +206,11 @@ func file_proto_rpc_proto_rawDescGZIP() []byte {
 	return file_proto_rpc_proto_rawDescData
 }
 
-var file_proto_rpc_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_proto_rpc_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_proto_rpc_proto_goTypes = []any{
-	(*Request)(nil), // 0: ricart.Request
-	(*Reply)(nil),   // 1: ricart.Reply
+	(*Request)(nil),        // 0: ricart.Request
+	(*Reply)(nil),          // 1: ricart.Reply
+	(*StatusResponse)(nil), // 2: ricart.StatusResponse
 }
 var file_proto_rpc_proto_depIdxs = []int32{
 	0, // 0: ricart.RicartService.RequestAccess:input_type -> ricart.Request
@@ -168,7 +233,7 @@ func file_proto_rpc_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_rpc_proto_rawDesc), len(file_proto_rpc_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
