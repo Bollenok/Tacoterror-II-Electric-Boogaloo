@@ -48,7 +48,7 @@ go run ./nodes --id=3 --peers=localhost:50051,localhost:50052 --http=:8082
 ```
 
 - `--peers` must list the **gRPC** addresses of the *other* servers.
-- `--http` must match this node’s **own** server HTTP port (so the node can mark its state via `/requesting`, `/enter`, `/release`).
+- `--http` must match this node’s **own** server HTTP port.
 
 ---
 
