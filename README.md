@@ -1,15 +1,3 @@
-# Ricart–Agrawala (Go, gRPC) — How to Run
-
-This project implements distributed **mutual exclusion** using the Ricart–Agrawala algorithm.  
-Each *node* has:
-- a **gRPC server** (receives Request/Reply),
-- a tiny **HTTP control** API (local control: `/status`, `/requesting`, `/enter`, `/release`),
-- client logic that broadcasts **RequestAccess** to peers and waits for **all** replies.
-
-> RA requires **N–1** grants. One node in the CS at a time—period.
-
----
-
 ## Requirements
 
 - Go 1.21+ (or your version that matches `go.mod`)
@@ -19,7 +7,7 @@ Each *node* has:
 
 ---
 
-## Build/Run Overview
+## How To Run
 
 You’ll run **N servers** (one per node) and **N node processes** (one per node).  
 Servers listen for gRPC; nodes broadcast to their peers and use the local HTTP control endpoints.
@@ -66,4 +54,4 @@ go run ./nodes --id=3 --peers=localhost:50051,localhost:50052 --http=:8082
 
 ## Logfiles
 - Servers → `Server/server_logs/server_<id>.log`
-- Nodes → `/nodes/node_logs/node_<id>.log`
+- Nodes → `nodes/node_logs/node_<id>.log`
